@@ -272,9 +272,51 @@ async def txt_handler(bot: Client, m: Message):
                         text = await resp.text()
                         url = re.search(r"(https://.*?playlist.m3u8.*?)\"", text).group(1)
 
-            elif 'videos.classplusapp' in url or "tencdn.classplusapp" in url or "webvideos.classplusapp.com" in url or "media-cdn-alisg.classplusapp.com" in url or "videos.classplusapp" in url or "videos.classplusapp.com" in url or "media-cdn-a.classplusapp" in url or "media-cdn.classplusapp" in url:
-             url = requests.get(f'https://api.classplusapp.com/cams/uploader/video/jw-signed-url?url={url}', headers={'x-access-token': 'eyJjb3Vyc2VJZCI6IjQ1NjY4NyIsInR1dG9ySWQiOm51bGwsIm9yZ0lkIjo0ODA2MTksImNhdGVnb3J5SWQiOm51bGx9r'}).json()['url']
+            elif 'https://contentId=' in url:
+                
+                content = url.replace("https://", "").split("contentId=")[-1]
+                
+                if ".m3u8" in content:
+                    content = content.split(".m3u8")[0]
+                    
+                
+                headers = {
+                    'host': 'api.classplusapp.com',
+                    'x-access-token': raw_text4,    
+                    'accept-language': 'EN',
+                    'api-version': '18',
+                    'app-version': '1.4.73.2',
+                    'build-number': '35',
+                    'connection': 'Keep-Alive',
+                    'content-type': 'application/json',
+                    'device-details': 'Xiaomi_Redmi 7_SDK-32',
+                    'device-id': 'c28d3cb16bbdac01',
+                    'region': 'IN',
+                    'user-agent': 'Mobile-Android',
+                    'webengage-luid': '00000187-6fe4-5d41-a530-26186858be4c',
+                    'accept-encoding': 'gzip'
+                }
+                
+                params = {
+                    'contentId': content,
+                    'offlineDownload': "false"
+                }
 
+                response = requests.get(
+                    "https://api.classplusapp.com/cams/uploader/video/jw-signed-url",
+                    params=params,
+                    headers=headers
+                ).json()
+                
+                if "testbook.com" in url or "classplusapp.com/drm" in url or "media-cdn.classplusapp.com/drm" in url:
+                    url = res['drmUrls']['manifestUrl']
+                else:
+                    url = response["url"]
+                    
+                print("\nSigned URL:\n", url)
+            else:
+                print("Invalid Link")
+                
             
             #elif '/master.mpd' in url:
              #id =  url.split("/")[-2]
