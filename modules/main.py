@@ -326,7 +326,7 @@ async def txt_handler(bot: Client, m: Message):
              #url = f"https://anonymouspwplayerr-3cfbfedeb317.herokuapp.com/pw?url={url}&token={raw_text4}"
             #url = f"https://madxapi-d0cbf6ac738c.herokuapp.com/{id}/master.m3u8?token={raw_text4}"
             if"d1d34p8vz63oiq" in url or "sec1.pw.live" in url:
-             url = f"https://ankitshakyaxapi.vercel.app/download?mpd_url={url}&quality={raw_text2}"
+             url = f"https://ankitshakyaxapi.vercel.app/download?mpd_url={url}&quality={raw_text4}"
                      
                                                          
             name1 = links[i][0].replace("\t", "").replace(":", "").replace("/", "").replace("+", "").replace("#", "").replace("|", "").replace("@", "").replace("*", "").replace(".", "").replace("https", "").replace("http", "").strip()
@@ -437,7 +437,7 @@ async def txt_handler(bot: Client, m: Message):
 
 # Advance
 
-@bot.on_message(filters.command(["eng"]) )
+@bot.on_message(filters.command(["babu"]) )
 async def txt_handler(bot: Client, m: Message):
     editable = await m.reply_text(f"**🔹Hi I am Poweful Lovely TXT Downloader📥 Bot.**\n🔹**Send me the TXT file and Just wait and Watch🥂.**")
     input: Message = await bot.listen(editable.chat.id)
@@ -507,11 +507,11 @@ async def txt_handler(bot: Client, m: Message):
     else:
         CR = raw_text3
         
-    await editable.edit("**Enter Your PW 𝗧𝗼𝗸𝗲𝗻 For 𝐌𝐏𝐃 𝐔𝐑𝐋 or send '/AASHU' for use default**")
+    await editable.edit("**Enter Your PW 𝗧𝗼𝗸𝗲𝗻 For 𝐌𝐏𝐃 𝐔𝐑𝐋 or send '/eng' for use default**")
     input4: Message = await bot.listen(editable.chat.id)
     raw_text4 = input4.text
     await input4.delete(True)
-    if raw_text4 == '/AASHU':
+    if raw_text4 == '/eng':
         MR = token
     else:
         MR = raw_text4
@@ -569,7 +569,7 @@ async def txt_handler(bot: Client, m: Message):
                     
             elif '/master.mpd' in url:
              vid_id =  url.split("/")[-2]
-             url =  f"https://pw-url-api-v1mf.onrender.com/process?v=https://sec1.pw.live/{vid_id}/master.mpd&quality={raw_text2}"
+             url =  f"https://ankitshakyaxapi.vercel.app/download?mpd_url={url}&quality={raw_text2}"
 
             name1 = links[i][0].replace("\t", "").replace(":", "").replace("/", "").replace("+", "").replace("#", "").replace("|", "").replace("@", "").replace("*", "").replace(".", "").replace("https", "").replace("http", "").strip()
             name = f'{str(count).zfill(3)}) {name1[:60]} {my_name}'
